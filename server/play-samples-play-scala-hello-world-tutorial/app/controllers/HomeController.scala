@@ -35,11 +35,12 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
   val drones = scala.collection.mutable.MutableList[Drone]()
 
   def saveDrone = Action { request =>
+    println("Post request received")
     val json = request.body.asJson.get
     val drone = json.as[Drone]
     drones.++=(List(drone))
     println(drones)
-    Ok(views.html.home(drones))
+    Ok
   }
 
   def hello() = Action { implicit request: Request[AnyContent] =>
