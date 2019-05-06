@@ -3,6 +3,7 @@ package controllers
 import javax.inject._
 import play.api._
 import play.api.mvc._
+import play.api.libs.json.Json
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
@@ -18,21 +19,12 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
-  def index() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.index())
-  }
-  
-  def explore() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.explore())
-  }
-  
-  def tutorial() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.tutorial())
-  }
-
-  import play.api.libs.json.Json
 
   val drones = scala.collection.mutable.MutableList[Drone]()
+
+  def index() = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.index(drones))
+  }
 
   def saveDrone = Action { request =>
     println("Post request received")
@@ -41,9 +33,5 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
     drones.++=(List(drone))
     println(drones)
     Ok
-  }
-
-  def hello() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.home(drones))
   }
 }
