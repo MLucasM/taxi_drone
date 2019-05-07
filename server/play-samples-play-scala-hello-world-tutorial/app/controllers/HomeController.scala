@@ -30,7 +30,13 @@ class HomeController @Inject()(cc: ControllerComponents) extends AbstractControl
     println("Post request received")
     val json = request.body.asJson.get
     val drone = json.as[Drone]
-    drones.++=(List(drone))
+
+    if (drones.map(_.id).contains(drone.id)) {
+      drones(drones.indexWhere(_.id == drone.id)) = drone
+    }
+    else {
+      drones.++=(List(drone))
+    }
     println(drones)
     Ok
   }
