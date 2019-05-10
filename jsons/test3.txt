@@ -1,0 +1,2 @@
+{"id":5,"latitude":"48°48'56.3\"N","longitude":"2°21'47.9\"E","temperature":20,"battery":76,"weight":2500}
+{"id":6,"latitude":"48°48'56.3\"N","longitude":"2°21'47.9\"E","temperature":46,"battery":17,"weight":1400}
