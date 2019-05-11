@@ -19,8 +19,7 @@ object Main {
 
 	def main(args: Array[String]): Unit = {
 		val paths = args.flatMap(getListOfFiles)
-		val files = paths.flatMap(Source.fromFile(_).getLines())
+		val files = paths.flatMap(Source.fromFile(_ , "UTF-8").getLines())
 		files.map(sendJsonString).toList
-
 	}
 }
