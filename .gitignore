@@ -1,5 +1,0 @@
-.gitignore
-*.class
-*.log
-target/*
-project/*
